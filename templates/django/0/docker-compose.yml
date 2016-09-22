@@ -1,0 +1,73 @@
+django-app:
+  image: "accent/rancher-django:latest"
+  expose:
+  - "8000"
+  labels:
+    io.rancher.sidekicks: django-datavolume
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  volumes_from:
+  - django-datavolume
+  environment:
+  - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+  - RDS_HOSTNAME=${RDS_HOSTNAME}
+  - RDS_PORT=${RDS_PORT}
+  - RDS_DB_NAME=${RDS_DB_NAME}
+  - RDS_USERNAME=${RDS_USERNAME}
+  - RDS_PASSWORD=${RDS_PASSWORD}
+  - EMAIL_HOST=${EMAIL_HOST}
+  - EMAIL_PORT=${EMAIL_PORT}
+  - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+  - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+  links:
+  - django-db:db
+  - django-mail:mail
+  entrypoint: ["bash", "/var/www/app/rancher.sh"]
+
+django-nginx:
+  image: "accent/rancher-django-proxy:latest"
+  ports:
+  - "${PORT}:80"
+  labels:
+    io.rancher.sidekicks: django-staticvolume
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  volumes_from:
+  - django-staticvolume
+  links:
+  - django-app:app
+
+django-db:
+  image: "mysql:latest"
+  tty: true
+  environment:
+  - MYSQL_DATABASE=${RDS_DB_NAME}
+  - MYSQL_USER=${RDS_USERNAME}
+  - MYSQL_PASSWORD=${RDS_PASSWORD}
+  - MYSQL_ROOT_PASSWORD=${RDS_PASSWORD}
+
+django-mail:
+  image: "mailhog/mailhog:latest"
+  expose:
+  - "1025"
+  ports:
+  - ":8025"
+  labels:
+      io.rancher.container.hostname_override: container_name
+  tty: true
+
+django-datavolume:
+  image: "busybox"
+  volumes:
+  - ${volume_work}:/var/www/app
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: []
+
+django-staticvolume:
+  image: "busybox"
+  volumes:
+  - ${volume_static}:/www/static
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: []

@@ -1,0 +1,5 @@
+name: Django
+description: |
+  Django, MySQL, Gunicorn, Nginx, Mailhog
+version: 1.0
+category: Django
