@@ -9,10 +9,10 @@ wordpress-app:
   volumes_from:
   - wordpress-datavolume
   volumes:
-  - ${php_ini_volume}:/usr/local/etc/php/php.ini
   - ${htaccess_volume}:/var/www/html/.htaccess
   - ${wpconfig_volume}:/var/www/html/wp-config.php
   environment:
+  - SITE_URL=${SITE_URL} 
   - RDS_HOSTNAME=${RDS_HOSTNAME}
   - RDS_PORT=${RDS_PORT}
   - RDS_DB_NAME=${RDS_DB_NAME}

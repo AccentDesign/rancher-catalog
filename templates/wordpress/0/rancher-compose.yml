@@ -17,13 +17,6 @@
     default: "/var/lib/docker/wordpress"
     type: "string"
 
-  - variable: "php_ini_volume"
-    description: "Volume for php.ini file"
-    label: "PHP ini volume:"
-    required: true
-    default: "/var/lib/docker/wordpress/php.ini"
-    type: "string"
-
   - variable: "htaccess_volume"
     description: "Volume for .htacces file"
     label: ".htaccess volume:"
@@ -36,6 +29,12 @@
     label: "wp-config.php volume:"
     required: true
     default: "/var/lib/docker/wordpress/wp-config.php"
+    type: "string"
+
+  - variable: "SITE_URL"
+    description: "Site URL"
+    label: "Site URL:"
+    required: true
     type: "string"
 
   - variable: "RDS_HOSTNAME"
