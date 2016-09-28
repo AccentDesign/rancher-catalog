@@ -1,0 +1,5 @@
+name: Django (PostgreSQL)
+description: |
+  Django, PostgreSQL, Gunicorn, Nginx, Mailhog
+version: 1.0
+category: Django

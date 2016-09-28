@@ -1,4 +1,4 @@
-name: Django
+name: Django (MySQL)
 description: |
   Django, MySQL, Gunicorn, Nginx, Mailhog
 version: 1.0

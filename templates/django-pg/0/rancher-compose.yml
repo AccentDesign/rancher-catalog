@@ -1,0 +1,93 @@
+.catalog:
+  name: Django
+  version: 1.0
+  description: |
+    Django.
+  questions:
+  - variable: "PORT"
+    type: "int"
+    label: "Port Number"
+    description: "Which port should Nginx run on? Alternatively run a load balancer to listen in the internal port 80."
+    required: false
+
+  - variable: "ALLOWED_HOSTS"
+    type: "string"
+    label: "Allowed hosts"
+    description: "List of comma seperated allowed hosts."
+    default: "*"
+    required: true
+
+  - variable: "volume_work"
+    description: "Work volume for django, the path to where manage.py and rancher.sh is located"
+    label: "Work volume:"
+    required: true
+    default: "/var/lib/docker/django-pg"
+    type: "string"
+
+  - variable: "volume_static"
+    description: "Static volume for nginx, the path to the collected static files"
+    label: "Static volume:"
+    required: true
+    default: "/var/lib/docker/django-pg/public/static"
+    type: "string"
+
+  - variable: "RDS_HOSTNAME"
+    description: "Postgres hostname"
+    label: "Postgres hostname:"
+    required: true
+    default: "db"
+    type: "string"
+
+  - variable: "RDS_PORT"
+    description: "Postgres port"
+    label: "Postgres port:"
+    required: true
+    default: "5432"
+    type: "string"
+
+  - variable: "RDS_DB_NAME"
+    description: "Postgres database"
+    label: "Postgres database:"
+    required: true
+    default: "postgres"
+    type: "string"
+
+  - variable: "RDS_USERNAME"
+    description: "Postgres username"
+    label: "Postgres username:"
+    required: true
+    default: "postgres"
+    type: "string"
+
+  - variable: "RDS_PASSWORD"
+    description: "Postgres password"
+    label: "Postgres password:"
+    required: true
+    default: "p@ssw0rd"
+    type: "password"
+
+  - variable: "EMAIL_HOST"
+    description: "Email host, leave to use mailcatcher"
+    label: "Email host:"
+    required: true
+    default: "mail"
+    type: "string"
+
+  - variable: "EMAIL_PORT"
+    description: "Email port, leave to use mailcatcher"
+    label: "Email port:"
+    required: true
+    default: "1025"
+    type: "string"
+
+  - variable: "EMAIL_HOST_USER"
+    description: "Email username, not required for mailcatcher"
+    label: "Email username:"
+    required: false
+    type: "string"
+
+  - variable: "EMAIL_HOST_PASSWORD"
+    description: "Email password, not required for mailcatcher"
+    label: "Email password:"
+    required: false
+    type: "password"
