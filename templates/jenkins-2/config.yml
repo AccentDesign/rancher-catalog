@@ -1,5 +1,5 @@
 name: Jenkins 2
 description: |
   Jenkins 2 CI Server
-version: 2.7.4
+version: 2.7.4-alpine
 category: Jenkins Services
