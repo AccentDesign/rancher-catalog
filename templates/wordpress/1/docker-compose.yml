@@ -1,0 +1,46 @@
+wordpress-app:
+  image: "accent/rancher-wordpress"
+  ports:
+  - "${PORT}:80"
+  labels:
+    io.rancher.sidekicks: wordpress-datavolume
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  volumes_from:
+  - wordpress-datavolume
+  volumes:
+  - ${htaccess_volume}:/var/www/html/.htaccess
+  - ${wpconfig_volume}:/var/www/html/wp-config.php
+  environment:
+  - SITE_URL=${SITE_URL} 
+  - RDS_HOSTNAME=${RDS_HOSTNAME}
+  - RDS_PORT=${RDS_PORT}
+  - RDS_DB_NAME=${RDS_DB_NAME}
+  - RDS_USERNAME=${RDS_USERNAME}
+  - RDS_PASSWORD=${RDS_PASSWORD}
+  - EMAIL_HOST=${EMAIL_HOST}
+  - EMAIL_PORT=${EMAIL_PORT}
+  - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+  - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+  - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
+  - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
+  links:
+  - wordpress-mail:mail
+
+wordpress-mail:
+  image: "mailhog/mailhog:latest"
+  expose:
+  - "1025"
+  ports:
+  - ":8025"
+  labels:
+      io.rancher.container.hostname_override: container_name
+  tty: true
+
+wordpress-datavolume:
+  image: "busybox"
+  volumes:
+  - ${volume_work}:/var/www/html
+  labels:
+    io.rancher.container.start_once: true
+  entrypoint: []

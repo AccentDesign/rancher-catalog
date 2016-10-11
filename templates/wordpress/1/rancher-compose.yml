@@ -1,0 +1,111 @@
+.catalog:
+  name: Wordpress
+  version: 1.1
+  description: |
+    Wordpress.
+  questions:
+  - variable: "PORT"
+    type: "int"
+    label: "Port Number"
+    description: "Which port should Apache run on? Alternatively run a load balancer to listen in the internal port 80."
+    required: false
+
+  - variable: "volume_work"
+    description: "Work volume for wordpress"
+    label: "Work volume:"
+    required: true
+    default: "/var/lib/docker/wordpress"
+    type: "string"
+
+  - variable: "htaccess_volume"
+    description: "Volume for .htacces file"
+    label: ".htaccess volume:"
+    required: true
+    default: "/var/lib/docker/wordpress/.htaccess"
+    type: "string"
+
+  - variable: "wpconfig_volume"
+    description: "Volume for wp-config.php"
+    label: "wp-config.php volume:"
+    required: true
+    default: "/var/lib/docker/wordpress/wp-config.php"
+    type: "string"
+
+  - variable: "SITE_URL"
+    description: "Site URL"
+    label: "Site URL:"
+    required: true
+    type: "string"
+
+  - variable: "RDS_HOSTNAME"
+    description: "MySQL hostname"
+    label: "MySQL hostname:"
+    required: true
+    default: "db"
+    type: "string"
+
+  - variable: "RDS_PORT"
+    description: "MySQL port"
+    label: "MySQL port:"
+    required: true
+    default: "3306"
+    type: "string"
+
+  - variable: "RDS_DB_NAME"
+    description: "MySQL database"
+    label: "MySQL database:"
+    required: true
+    default: "mysql"
+    type: "string"
+
+  - variable: "RDS_USERNAME"
+    description: "MySQL username"
+    label: "MySQL username:"
+    required: true
+    default: "mysql"
+    type: "string"
+
+  - variable: "RDS_PASSWORD"
+    description: "MySQL password"
+    label: "MySQL password:"
+    required: true
+    default: "p@ssw0rd"
+    type: "password"
+
+  - variable: "EMAIL_HOST"
+    description: "Email host, leave to use mailcatcher"
+    label: "Email host:"
+    required: true
+    default: "mail"
+    type: "string"
+
+  - variable: "EMAIL_PORT"
+    description: "Email port, leave to use mailcatcher"
+    label: "Email port:"
+    required: true
+    default: "1025"
+    type: "string"
+
+  - variable: "EMAIL_HOST_USER"
+    description: "Email username, not required for mailcatcher"
+    label: "Email username:"
+    required: false
+    type: "string"
+
+  - variable: "EMAIL_HOST_PASSWORD"
+    description: "Email password, not required for mailcatcher"
+    label: "Email password:"
+    required: false
+    type: "password"
+
+  - variable: "S3_ACCESS_KEY_ID"
+    description: "AWS S3 bucket key id"
+    label: "S3_ACCESS_KEY_ID:"
+    required: false
+    type: "string"
+
+  - variable: "S3_SECRET_ACCESS_KEY"
+    description: "AWS S3 bucket secret key"
+    label: "S3_SECRET_ACCESS_KEY:"
+    required: false
+    type: "string"
