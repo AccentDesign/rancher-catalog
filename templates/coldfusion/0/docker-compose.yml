@@ -1,0 +1,38 @@
+coldfusion-app:
+  ports:
+  - ${PORT}:80
+  - ${ADMIN_PORT}:8500
+  environment:
+    - ENVIRONMENT = ${ENVIRONMENT}
+    - EMAIL_HOST = ${EMAIL_HOST}
+    - EMAIL_PORT = ${EMAIL_PORT}
+  labels:
+    io.rancher.sidekicks: coldfusion-datavolume
+    io.rancher.container.hostname_override: container_name
+  tty: true
+  image: accent/coldfusion2016:latest
+  links:
+  - coldfusion-mail:mail
+  volumes_from:
+  - coldfusion-datavolume
+  
+coldfusion-mail:
+  image: "mailhog/mailhog:latest"
+  expose:
+    - "1025"
+  ports:
+    - ":8025"
+  labels:
+      io.rancher.container.hostname_override: container_name
+  tty: true
+  
+coldfusion-datavolume:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.start_once: 'true'
+  tty: true
+  image: busybox
+  volumes:
+  - ${volume_work}:/var/www
+  entrypoint: []
+
