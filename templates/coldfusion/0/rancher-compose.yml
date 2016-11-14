@@ -37,9 +37,9 @@
     default: "1025"
     type: "string"
     
-  - variable: "ENVIRONMENT"
+  - variable: "DOCKERENV"
     description: "Used to check if local. i.e. DOCKER"
-    label: "Environment"
+    label: "Docker Environment"
     required: true
     default: "DOCKER"
     type: "string"
