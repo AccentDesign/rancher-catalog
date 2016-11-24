@@ -1,0 +1,45 @@
+.catalog:
+  name: Coldfusion
+  version: 1.1
+  description: |
+    Coldfusion.
+  questions:
+  - variable: "PORT"
+    type: "int"
+    label: "Port Number"
+    description: "Which port should Apache run on? Alternatively run a load balancer to listen in the internal port 80."
+    required: false
+    
+  - variable: "ADMIN_PORT"
+    type: "int"
+    label: "Admin Port Number"
+    description: "Choose Coldfusion admin port.  Alternatively run a load balancer to listen in the internal port 8500."
+    required: false
+    
+  - variable: "volume_work"
+    description: "Work volume for wordpress"
+    label: "Work volume:"
+    required: true
+    default: "/var/lib/docker/wordpress"
+    type: "string"
+    
+  - variable: "EMAIL_HOST"
+    description: "Email host, leave to use mailcatcher"
+    label: "Email host:"
+    required: true
+    default: "mail"
+    type: "string"
+
+  - variable: "EMAIL_PORT"
+    description: "Email port, leave to use mailcatcher"
+    label: "Email port:"
+    required: true
+    default: "1025"
+    type: "string"
+    
+  - variable: "DOCKERENV"
+    description: "Used to check if local. i.e. DOCKER"
+    label: "Docker Environment"
+    required: true
+    default: "DOCKER"
+    type: "string"
