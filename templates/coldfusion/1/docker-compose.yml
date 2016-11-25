@@ -3,9 +3,9 @@ coldfusion-app:
   - ${PORT}:80
   - ${ADMIN_PORT}:8500
   environment:
-    - DOCKERENV = ${DOCKERENV}
-    - EMAIL_HOST = ${EMAIL_HOST}
-    - EMAIL_PORT = ${EMAIL_PORT}
+    - DOCKERENV=${DOCKERENV}
+    - EMAIL_HOST=${EMAIL_HOST}
+    - EMAIL_PORT=${EMAIL_PORT}
   labels:
     io.rancher.sidekicks: coldfusion-datavolume
     io.rancher.container.hostname_override: container_name
