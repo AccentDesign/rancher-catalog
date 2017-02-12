@@ -1,0 +1,5 @@
+name: Django (PostgreSQL + Redis)
+description: |
+  Django, PostgreSQL, Redis, Daphne, Nginx, Mailhog
+version: 1.0
+category: Django
