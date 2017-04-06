@@ -1,0 +1,5 @@
+name: Django (PostgreSQL + Elasticsearch)
+description: |
+  Django, PostgreSQL, Elasticsearch, Gunicorn, Nginx, Mailhog
+version: 1.0
+category: Django
